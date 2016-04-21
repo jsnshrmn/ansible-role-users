@@ -1,13 +1,13 @@
 ---
 - name: Copy sshd_config
-  template:
+  copy:
     src: sshd_config
     dest: /etc/ssh/sshd_config
     mode: 0600
     owner: root
     group: root
 - name: Copy ssh_config
-  copy:
+  template:
     src: ssh_config.j2
     dest: /etc/ssh/ssh_config
     mode: 0600
