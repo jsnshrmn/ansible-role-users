@@ -24,9 +24,11 @@
   command: ssh-keyscan github.com
   register: github_ssh_key
 - name: tell the host about our servers it might want to ssh to
-  known_hosts: path='/etc/ssh/ssh_known_hosts'
-               name='github.com'
-               key="{{ github_ssh_key.stdout }}"
+  known_hosts:
+    path: '/etc/ssh/ssh_known_hosts'
+    host: 'github.com'
+    key: "{{ github_ssh_key.stdout }}"
+    state: present
 - name: Restart sshd
   service:
     name: sshd
