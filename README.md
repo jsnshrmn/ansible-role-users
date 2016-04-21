@@ -23,6 +23,16 @@ users:
     pubkey: 'ssh-rsa anotherpubkey centos@example.org'
 ```
 
+You'll also need to define one or more ssh brokers in the 'ssh_brokers' var, eg.
+Note that dn suffix is the domain name space for the servers you will reach through the broker.
+
+```
+ssh_brokers:
+  - alias: 'mybroker'
+    ip: '192.168.1.2'
+    dn_suffix: 'example.org'
+```
+
 Dependencies
 ------------
 
