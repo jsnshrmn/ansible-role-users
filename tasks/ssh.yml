@@ -1,0 +1,34 @@
+---
+- name: Copy sshd_config
+  copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    mode: 0600
+    owner: root
+    group: root
+- name: Copy ssh_config
+  copy:
+    src: ssh_config
+    dest: /etc/ssh/ssh_config
+    mode: 0600
+    owner: root
+    group: root
+- name: Ensure /etc/ssh/ssh_known_hosts exists
+  file:
+    path: /etc/ssh/ssh_known_hosts
+    state: touch
+    mode: 0600
+    owner: root
+    group: root
+- name: Get github ssh fingerprints.
+  command: ssh-keyscan github.com
+  register: github_ssh_key
+- name: tell the host about our servers it might want to ssh to
+  known_hosts: path='/etc/ssh/ssh_known_hosts'
+               name='github.com'
+               key="{{ github_ssh_key.stdout }}"
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+    enabled: yes

@@ -1,11 +1,13 @@
 ---
-- name: user exists
-  user: name={{ item.name }} groups={{ item.groups }} append=yes
-  with_items: "{{ users }}"
-- name: ssh keys
-  authorized_key:
-    user: "{{ item.name }}"
-    key: "{{ item.pubkey }}"
-    state: present
-    exclusive: yes
-  with_items: "{{ users }}"
+- include: users.yml
+  sudo: yes
+  tags:
+  - ec2
+  - virtualbox
+  - vsphere
+- include: ssh.yml
+  sudo: yes
+  tags:
+  - ec2
+  - virtualbox
+  - vsphere
