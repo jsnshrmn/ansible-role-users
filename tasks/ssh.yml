@@ -10,14 +10,14 @@
   template:
     src: ssh_config.j2
     dest: /etc/ssh/ssh_config
-    mode: 0600
+    mode: 0644
     owner: root
     group: root
 - name: Ensure /etc/ssh/ssh_known_hosts exists
   file:
     path: /etc/ssh/ssh_known_hosts
     state: touch
-    mode: 0600
+    mode: 0644
     owner: root
     group: root
 - name: Get github ssh fingerprints.
