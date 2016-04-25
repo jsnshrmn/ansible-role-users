@@ -11,3 +11,16 @@
   - ec2
   - virtualbox
   - vsphere
+- include: virtualbox.yml
+  sudo: yes
+  tags:
+  - virtualbox
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+    enabled: yes
+  tags:
+  - ec2
+  - virtualbox
+  - vsphere
