@@ -29,8 +29,3 @@
     host: 'github.com'
     key: "{{ github_ssh_key.stdout }}"
     state: present
-- name: Restart sshd
-  service:
-    name: sshd
-    state: restarted
-    enabled: yes
