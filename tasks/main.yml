@@ -12,6 +12,7 @@
   - virtualbox
   - vsphere
 - include: virtualbox.yml
+  when: (ansible_virtualization_type == "virtualbox") and (ansible_virtualization_role == "guest")
   sudo: yes
   tags:
   - virtualbox
