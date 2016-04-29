@@ -1,12 +1,12 @@
 OULibraries.centos7
 =========
 
-User management role for OULib.
+User management role for OULib. This role makes changes to ssh config and sudoers config.
 
 Requirements
 ------------
 
-A target system running CentOS7x.
+A target system running CentOS/RHEL or Ubuntu 
 
 Role Variables
 --------------
