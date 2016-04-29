@@ -2,6 +2,8 @@ OULibraries.centos7
 =========
 
 User management role for OULib. This role makes changes to ssh config and sudoers config.
+Note that on Ubuntu, this sets wheel to be the sudoers group instead of sudo.
+Set your expectations accordingly.
 
 Requirements
 ------------
