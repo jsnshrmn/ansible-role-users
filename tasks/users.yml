@@ -1,6 +1,6 @@
 ---
 - name: group 'wheel' exists
-- group:
+  group:
     name: wheel
     state: present
     system: yes
