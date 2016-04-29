@@ -1,12 +1,9 @@
 ---
-- name: Copy sudoers
-  copy:
-    src: sudoers
-    dest: /etc/sudoers
-    mode: 0400
-    owner: root
-    group: root
-    validate: 'visudo -cf %s'
+- name: group 'wheel' exists
+- group:
+    name: wheel
+    state: present
+    system: yes
 - name: user exists
   user: name={{ item.name }} groups={{ item.groups }} append=yes
   with_items: "{{ users }}"
@@ -17,3 +14,11 @@
     state: present
     exclusive: yes
   with_items: "{{ users }}"
+- name: Copy sudoers
+  copy:
+    src: sudoers
+    dest: /etc/sudoers
+    mode: 0400
+    owner: root
+    group: root
+    validate: 'visudo -cf %s'
