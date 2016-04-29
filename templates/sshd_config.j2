@@ -47,8 +47,8 @@ AcceptEnv XMODIFIERS
 
 # override default of no subsystems
 {% if(ansible_distribution == "CentOS") or (ansible_distribution == "RedHat") %}
-Subsystem sftp /usr/lib/openssh/sftp-server
+Subsystem sftp /usr/libexec/openssh/sftp-server
 {% endif %}
 {% if(ansible_distribution == "Ubuntu") %}
-Subsystem	sftp	/usr/libexec/openssh/sftp-server
+Subsystem sftp /usr/lib/openssh/sftp-server
 {% endif %}
