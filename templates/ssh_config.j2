@@ -13,6 +13,7 @@ Host *.{{ ssh_broker.dn_suffix }}
 {% endfor %}
 
  Host{% for ssh_broker in ssh_brokers %} {{ ssh_broker.alias }} *.{{ ssh_broker.dn_suffix }}{% endfor %}
+ 
    ForwardAgent yes
    ForwardX11 no
    GSSAPIAuthentication yes
