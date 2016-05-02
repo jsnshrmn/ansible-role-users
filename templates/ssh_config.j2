@@ -5,7 +5,6 @@ Host 127.0.0.1
 {% for ssh_broker in ssh_brokers %}
 Host {{ ssh_broker.alias }}
   HostName {{ ssh_broker.ip }}
-  ProxyCommand none
 {% endfor %}
 
 {% for ssh_broker in ssh_brokers %}
@@ -13,7 +12,7 @@ Host *.{{ ssh_broker.dn_suffix }}
     ProxyCommand           ssh -q -A {{ ssh_broker.alias }} nc %h %p
 {% endfor %}
 
- Host *
+ Host{% for ssh_broker in ssh_brokers %} {{ ssh_broker.alias }} *.{{ ssh_broker.dn_suffix }}{% endfor %}
    ForwardAgent yes
    ForwardX11 no
    GSSAPIAuthentication yes
