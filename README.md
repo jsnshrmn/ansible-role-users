@@ -35,6 +35,31 @@ ssh_brokers:
     dn_suffix: 'example.org'
 ```
 
+You may optionally define conditional sshd_config via Match. To do so, specify the 'sshd_match' var, eg.
+
+```
+sshd_match:
+  - criteria:
+      - 'User'
+      - 'centos'
+      - 'Address'
+      - '192.168.1.*'
+    overrides:
+      - keyword: 'PasswordAuthentication'
+        value: 'no'
+      - keyword: 'MaxAuthTries'
+        value: '10'
+```
+
+would result in the following block of config:
+
+```
+# Match exceptions
+Match User centos Address 192.168.1.*
+  PasswordAuthentication no
+  MaxAuthTries 10
+```
+
 Dependencies
 ------------
 
