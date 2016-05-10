@@ -56,3 +56,14 @@ Subsystem sftp /usr/libexec/openssh/sftp-server
 {% if(ansible_distribution == "Ubuntu") %}
 Subsystem sftp /usr/lib/openssh/sftp-server
 {% endif %}
+
+{% if sshd_match is defined %}
+# Match exceptions
+{% for match in sshd_match %}
+Match{% for criterion in match.criteria %} {{ criterion }}{% endfor %}
+
+{% for line in match.overrides %}
+  {{ line.keyword }} {{ line.value }}
+{% endfor %}
+{% endfor %}
+{% endif %}
