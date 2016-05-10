@@ -3,12 +3,13 @@ Port 22
 Protocol 2
 
 HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_ed25519_key
-
 {% if(((ansible_distribution == "CentOS") or (ansible_distribution == "RedHat")) and (ansible_distribution_major_version == "6")) %}
+
 UsePrivilegeSeparation yes
 {% else %}
+
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
 UsePrivilegeSeparation sandbox
 {% endif %}
 SyslogFacility AUTHPRIV
