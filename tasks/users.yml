@@ -5,7 +5,7 @@
     state: present
     system: yes
 - name: user exists
-  user: name={{ item.name }} groups={{ item.groups }} append=yes
+  user: name={{ item.name }} shell=/bin/bash groups={{ item.groups }} append=yes
   with_items: "{{ users }}"
 - name: ssh keys
   authorized_key:
