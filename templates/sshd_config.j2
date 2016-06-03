@@ -28,6 +28,7 @@ PasswordAuthentication no
 ChallengeResponseAuthentication no
 PermitRootLogin no
 DenyUsers {% for user in sshd_denyusers %} {{ user }}{% endfor %}
+
 #AllowUsers{% for user in users %} {{ user.name }}{% endfor %}
 
 
