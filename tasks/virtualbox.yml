@@ -8,8 +8,8 @@
 - name: Allow vagrant user ssh access in VirtualBox
   lineinfile:
     dest: /etc/ssh/sshd_config
-    line: "{{ item.line }}"
+    regexp: "{{ item }}"
     state: absent
   with_items:
-    - { line: 'DenyUsers vagrant' }
-    - { line: 'PasswordAuthentication no' }
+    - ^DenyUsers
+    - ^PasswordAuthentication no$
