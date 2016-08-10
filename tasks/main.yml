@@ -8,15 +8,5 @@
   sudo: yes
   tags:
   - virtualbox
-- name: Restart sshd (CentOS)
-  service:
-    name: sshd
-    state: restarted
-    enabled: yes
-  when: (ansible_distribution == "CentOS") or (ansible_distribution == "RedHat")
-- name: Restart ssh (Ubuntu)
-  service:
-    name: ssh
-    state: restarted
-    enabled: yes
-  when: (ansible_distribution == "Ubuntu")
+- include: services.yml
+  sudo: yes
