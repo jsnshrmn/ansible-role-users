@@ -60,6 +60,12 @@ Match User centos Address 192.168.1.*
   MaxAuthTries 10
 ```
 
+You may optionally define users_secure_path to allow sudo to work as expected with executables in arbitrary locations, eg.
+
+```
+users_secure_path: '/opt/somevendor/someproduct/bin:/sbin:/bin:/usr/sbin:/usr/bin'
+```
+
 Dependencies
 ------------
 
