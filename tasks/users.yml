@@ -15,8 +15,8 @@
     exclusive: yes
   with_items: "{{ users }}"
 - name: Copy sudoers
-  copy:
-    src: sudoers
+  template:
+    src: sudoers.j2
     dest: /etc/sudoers
     mode: 0400
     owner: root

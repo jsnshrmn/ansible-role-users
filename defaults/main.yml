@@ -1,3 +1,6 @@
 ---
+
+users_secure_path: '/sbin:/bin:/usr/sbin:/usr/bin'
+
 sshd_denyusers:
   - vagrant
