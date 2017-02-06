@@ -22,10 +22,3 @@
     owner: root
     group: root
     validate: 'visudo -cf %s'
-- name: Copy motd
-  copy:
-    src: motd.sh
-    dest: /etc/profile.d/
-    mode: 0644
-    owner: root
-    group: root

@@ -1,0 +1,25 @@
+---
+- name: Ensure /opt/oulib/users/bin exists
+  file:
+    path: /opt/oulib/users/bin
+    state: directory
+    mode: 0755
+    owner: root
+    group: wheel
+    recurse: yes
+
+- name: Copy motd
+  copy:
+    src: motd.sh
+    dest: /etc/profile.d/
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy printusers
+  copy:
+    src: printusers.sh
+    dest: /opt/oulib/users/bin/printusers.sh
+    mode: 0744
+    owner: root
+    group: root
