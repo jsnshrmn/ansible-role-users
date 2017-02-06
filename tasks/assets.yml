@@ -16,10 +16,13 @@
     owner: root
     group: root
 
-- name: Copy printusers
+- name: Copy helper scripts
   copy:
-    src: printusers.sh
-    dest: /opt/oulib/users/bin/printusers.sh
+    src: "{{ item }}"
+    dest: /opt/oulib/users/bin/
     mode: 0744
     owner: root
     group: root
+  with_items:
+    - printusers.sh
+    - printsecurepath.sh

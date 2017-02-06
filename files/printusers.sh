@@ -15,7 +15,7 @@ for user in $(cut -d: -f1 /etc/passwd | sort); do
   if [ -f ${keypath} ]; then
 
     # Get a group membership list that exlcudes this user's own group
-    groups=$(groups ${user} | sed "s#${user}##g" | cut -d ':' -f '2' | xargs|  tr ' ' ',')
+    groups=$(groups ${user} | sed "s#${user}##g" | cut -d ':' -f '2' | xargs |  tr ' ' ',')
 
     # Get the date that the authorized_keys file was last touched
     keyage=$(stat ${keypath} | grep 'Modify' | cut -d ' ' -f 2)
