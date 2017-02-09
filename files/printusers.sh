@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # Print out current shell user info in suitable format for OUlibraries.users
 
