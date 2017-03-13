@@ -1,24 +1,24 @@
 ---
 - include: users.yml
-  sudo: yes
+  become: true
   tags:
   - users_users
 - include: ssh.yml
-  sudo: yes
+  become: true
   tags:
   - users_ssh
 - include: virtualbox.yml
   when: (ansible_virtualization_type == "virtualbox") and (ansible_virtualization_role == "guest")
-  sudo: yes
+  become: true
   tags:
   - users_virtualbox
 
 - include: services.yml
-  sudo: yes
+  become: true
   tags:
   - users_services
 
 - include: assets.yml
-  sudo: yes
+  become: true
   tags:
   - users_assets
