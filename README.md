@@ -75,7 +75,7 @@ Example Playbook
 License
 -------
 
-To be determined
+[MIT](https://github.com/OULibraries/ansible-role-users/blob/master/LICENSE)
 
 Author Information
 ------------------
