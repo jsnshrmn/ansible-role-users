@@ -3,7 +3,7 @@ OULibraries.centos7
 
 This role adds users and makes changes to ssh config and sudoers config.
 
-Note that on Ubuntu, this sets wheel to be the sudoers group instead of sudo. Set your expectations accordingly.
+Note: on Ubuntu, this sets wheel to be the sudoers group instead of sudo. Set your expectations accordingly.
 
 Requirements
 ------------
