@@ -20,14 +20,14 @@
   tags:
   - users_virtualbox
 
-# Restart ssh service    
-- include: services.yml
-  become: true
-  tags:
-  - users_services
-
 # Install support scripts and other files    
 - include: assets.yml
   become: true
   tags:
   - users_assets
+
+# Restart ssh service
+- include: services.yml
+  become: true
+  tags:
+  - users_services
