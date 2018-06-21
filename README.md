@@ -1,7 +1,7 @@
 OULibraries.centos7
 =========
 
-This role adds users wish ssh keys, and makes changes to ssh config and sudoers config.
+This role adds users and ssh keys, confiures ssh, and configures sudoers.
 
 Requirements
 ------------
