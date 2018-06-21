@@ -1,14 +1,12 @@
 OULibraries.centos7
 =========
 
-This role adds users and makes changes to ssh config and sudoers config.
-
-Note: on Ubuntu, this sets wheel to be the sudoers group instead of sudo. Set your expectations accordingly.
+This role adds users wish ssh keys, and makes changes to ssh config and sudoers config.
 
 Requirements
 ------------
 
-A target system running CentOS/RHEL or Ubuntu 
+A target system running CentOS/RHEL. 
 
 Role Variables
 --------------
@@ -81,9 +79,8 @@ Match User centos Address 192.168.1.*
 
 Dependencies
 ------------
+No special dependencies. 
 
-Example Playbook
-----------------
 
 License
 -------
