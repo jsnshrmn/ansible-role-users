@@ -1,24 +1,38 @@
 ---
+# We will use the wheel group to determine sudoers
 - name: group 'wheel' exists
   group:
     name: wheel
     state: present
     system: yes
-- name: user exists
-  user: name={{ item.name }} shell={{ item.shell|default('/bin/bash') }} groups={{ item.groups }} append=yes
-  with_items: "{{ users }}"
+
+- name: admin users exists
+  user:
+    name: "{{ item.name }}"
+    groups: "wheel,{{ users_admin_groups }}"
+    append: yes
+  with_items: "{{ users_admin_users }}"
+
 - name: ssh keys
   authorized_key:
     user: "{{ item.name }}"
     key: "{{ item.pubkey }}"
     state: present
     exclusive: yes
-  with_items: "{{ users }}"
-- name: Copy sudoers
-  template:
-    src: sudoers.j2
-    dest: /etc/sudoers
-    mode: 0400
-    owner: root
-    group: root
-    validate: 'visudo -cf %s'
+  with_items: "{{ users_admin_users }}"
+
+- name: standard users exists
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ users_std_groups }}"
+    append: yes
+  with_items: "{{ users_std_users }}"
+
+- name: standard users ssh keys
+  authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.pubkey }}"
+    state: present
+    exclusive: yes
+  with_items: "{{ users_std_users }}"
+

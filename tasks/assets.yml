@@ -26,3 +26,12 @@
   with_items:
     - printusers.sh
     - printsecurepath.sh
+
+- name: Copy sudoers
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers
+    mode: 0400
+    owner: root
+    group: root
+    validate: 'visudo -cf %s'

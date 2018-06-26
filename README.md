@@ -1,31 +1,47 @@
 OULibraries.centos7
 =========
 
-User management role for OULib. This role makes changes to ssh config and sudoers config.
-Note that on Ubuntu, this sets wheel to be the sudoers group instead of sudo.
-Set your expectations accordingly.
+This role adds users and ssh keys, confiures ssh, and configures sudoers.
 
 Requirements
 ------------
 
-A target system running CentOS/RHEL or Ubuntu 
+A target system running CentOS/RHEL. 
 
 Role Variables
 --------------
 
-You'll need to define one or more users in the 'users' var. eg.
+### User Config
+
+
+Define users and the groups they should get as follows:
 
 ```
-users:
-  - name: 'centos'
-    groups: 'wheel'
-    pubkey: 'ssh-rsa somepubkey centos@example.org'
-  - name: 'centos1'
-    groups: 'wheel'
-    pubkey: 'ssh-rsa anotherpubkey centos@example.org'
+# Admin users (wheel membership is automatic)
+users_admin_groups: "tomcat,apache"
+users_admin_users:
+  - name: 'admin'
+    pubkey: 'ssh-rsa somepubkey admin@example.org'
+  - name: 'otheradmin'
+    pubkey: 'ssh-rsa anotherpubkey otheradmin@example.org'
+
+
+# Normal users 
+users_std_groups: apache
+users_std_users:
+  - name: 'tester'
+    pubkey: 'ssh-rsa somepubkey tester@example.org'
 ```
 
-You'll also need to define one or more ssh brokers in the 'ssh_brokers' var, eg.
+You may optionally define users_secure_path to allow sudo to work as expected with executables in arbitrary locations, eg.
+
+```
+users_secure_path: '/opt/somevendor/someproduct/bin:/sbin:/bin:/usr/sbin:/usr/bin'
+```
+
+### SSH Config
+
+To enable outgoing ssh, you'll need to define one or more ssh brokers in the 'ssh_brokers' var, eg.
 Note that dn suffix is the domain name space for the servers you will reach through the broker.
 
 ```
@@ -60,17 +76,11 @@ Match User centos Address 192.168.1.*
   MaxAuthTries 10
 ```
 
-You may optionally define users_secure_path to allow sudo to work as expected with executables in arbitrary locations, eg.
-
-```
-users_secure_path: '/opt/somevendor/someproduct/bin:/sbin:/bin:/usr/sbin:/usr/bin'
-```
 
 Dependencies
 ------------
+No special dependencies. 
 
-Example Playbook
-----------------
 
 License
 -------
@@ -80,4 +90,5 @@ License
 Author Information
 ------------------
 
-Jason Sherman
+OU Libraries
+
