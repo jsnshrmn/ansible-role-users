@@ -1,19 +1,20 @@
 ---
 # We will use the wheel group to determine sudoers
-- name: group 'wheel' exists
+- name: Group 'wheel' exists.
   group:
     name: wheel
     state: present
     system: yes
 
-- name: admin users exists
+# Add all the people who can sudo
+- name: Admin users exists.
   user:
     name: "{{ item.name }}"
     groups: "wheel,{{ users_admin_groups }}"
     append: yes
   with_items: "{{ users_admin_users }}"
 
-- name: ssh keys
+- name:  Ssh keys installed for admin users. 
   authorized_key:
     user: "{{ item.name }}"
     key: "{{ item.pubkey }}"
@@ -21,14 +22,15 @@
     exclusive: yes
   with_items: "{{ users_admin_users }}"
 
-- name: standard users exists
+# Add Other people
+- name: Standard users exists.
   user:
     name: "{{ item.name }}"
     groups: "{{ users_std_groups }}"
     append: yes
   with_items: "{{ users_std_users }}"
 
-- name: standard users ssh keys
+- name: Ssh keys installed for standard users. 
   authorized_key:
     user: "{{ item.name }}"
     key: "{{ item.pubkey }}"
