@@ -1,4 +1,6 @@
 ---
+
+# configure sshd and ssh 
 - name: Copy sshd_config
   template:
     src: sshd_config.j2
@@ -13,6 +15,8 @@
     mode: 0644
     owner: root
     group: root
+
+# Squash possible GitHub connection errors 
 - name: Ensure /etc/ssh/ssh_known_hosts exists
   file:
     path: /etc/ssh/ssh_known_hosts
@@ -23,6 +27,7 @@
 - name: Get github ssh fingerprints.
   command: ssh-keyscan github.com
   register: github_ssh_key
+  check_mode: no
 - name: tell the host about our servers it might want to ssh to
   known_hosts:
     path: '/etc/ssh/ssh_known_hosts'
