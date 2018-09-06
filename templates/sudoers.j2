@@ -40,5 +40,11 @@ root    ALL=(ALL)       ALL
 ## Allows people in group wheel to run all commands without a password
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 
+{% if users_sudoers_extra %}
+# Additional sudoers config defined by OULibraries.users role in
+# users_sudo_extra variable.
+{{ users_sudoers_extra }}
+
+{% endif %}
 ## Include files located in /etc/sudoers.d. (the # here does not mean a comment)
 #includedir /etc/sudoers.d

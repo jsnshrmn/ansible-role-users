@@ -8,5 +8,7 @@ users_admin_users: []
 users_std_groups: ""
 users_std_users: []
 
+users_sudoers_extra: ""
+
 sshd_denyusers:
   - vagrant
