@@ -13,12 +13,12 @@
   - users_ssh
 
 # Configure Vagrant specific settings
-- include: virtualbox.yml
-  when: (ansible_virtualization_type == "virtualbox") 
+- include: vagrant.yml
+  when: (ansible_virtualization_type == "virtualbox" or ansible_virtualization_type == "docker")
           and (ansible_virtualization_role == "guest")
   become: true
   tags:
-  - users_virtualbox
+  - users_vagrant
 
 # Install support scripts and other files    
 - include: assets.yml
